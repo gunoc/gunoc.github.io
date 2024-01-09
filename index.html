@@ -1,0 +1,39 @@
+---
+layout: default
+title: Home
+---
+
+<div class="posts">
+  {% raw %}{% for post in paginator.posts %}{% endraw %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url }}"> {{ post.title }} </a>
+    </h1>
+
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+
+    {{ post.content }}
+  </div>
+  {% raw %}{% endfor %}{% endraw %}
+</div>
+
+<div class="pagination">
+  {% raw %}{% if paginator.next_page %}{% endraw %}
+  <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}"
+    >Older</a
+  >
+  {% raw %}{% else %}{% endraw %}
+  <span class="pagination-item older">Older</span>
+  {% raw %}{% endif %}{% endraw %} {% raw %}{% if paginator.previous_page %}{% endraw %}
+  {% raw %}{% if paginator.page == 2 %}{% endraw %}
+  <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
+  {% raw %}{% else %}{% endraw %}
+  <a
+    class="pagination-item newer"
+    href="{{ site.baseurl }}page{{paginator.previous_page}}"
+    >Newer</a
+  >
+  {% raw %}{% endif %}{% endraw %} {% raw %}{% else %}{% endraw %}
+  <span class="pagination-item newer">Newer</span>
+  {% raw %}{% endif %}{% endraw %}
+</div>
